@@ -1,0 +1,21 @@
+{
+  "name": "zelenka-serverless",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf build && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && npx serverless deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.7",
+    "@types/aws-lambda": "^8.10.62",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/node": "^14.11.1",
+    "serverless": "^2.1.1",
+    "typescript": "^4.0.2"
+  }
+}

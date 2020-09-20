@@ -1,0 +1,33 @@
+service: zelenka-serverless
+app: zelenka
+org: marizamj
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+  profile: zelenka
+  region: eu-central-1
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource: "arn:aws:ses:eu-central-1:837368769602:identity/marizamj@gmail.com"
+
+functions:
+  emailSender:
+    handler: build/handler.emailSender
+
+    events:
+      - http:
+          path: /form
+          method: post
+          cors:
+            origins:
+              - http://localhost:3000
+              - http://zelenka.online
+            # headers:
+            #   - Content-Type
