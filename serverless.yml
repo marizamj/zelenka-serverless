@@ -8,14 +8,14 @@ provider:
   name: aws
   runtime: nodejs12.x
 
-  profile: zelenka
+  profile: serverless
   region: eu-central-1
 
   iamRoleStatements:
     - Effect: "Allow"
       Action:
         - "ses:SendEmail"
-      Resource: "arn:aws:ses:eu-central-1:837368769602:identity/marizamj@gmail.com"
+      Resource: "arn:aws:ses:${self:provider.region}:*:*"
 
 functions:
   emailSender:
@@ -29,5 +29,3 @@ functions:
             origins:
               - http://localhost:3000
               - http://zelenka.online
-            # headers:
-            #   - Content-Type
