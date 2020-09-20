@@ -2,9 +2,9 @@ import { SES } from "aws-sdk";
 import { APIGatewayProxyHandler } from "aws-lambda";
 import { ALLOWED_ORIGINS, normalizeHeaders, getEmailBodyHtml } from "./helpers";
 
-const ses = new SES({ region: "eu-central-1" });
+export const emailSender: APIGatewayProxyHandler = async event => {
+  const ses = new SES({ region: "eu-central-1" });
 
-const emailSender: APIGatewayProxyHandler = async event => {
   try {
     const { origin } = normalizeHeaders(event.headers);
 
@@ -29,8 +29,7 @@ const emailSender: APIGatewayProxyHandler = async event => {
     await ses
       .sendEmail(params)
       .promise()
-      .then(data => console.log("SES DATA: ", data))
-      .catch(error => console.log("SES ERROR: ", error));
+      .then(data => console.log("SES DATA: ", data));
 
     return {
       statusCode: 200,
