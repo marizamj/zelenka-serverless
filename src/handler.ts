@@ -16,7 +16,7 @@ export const emailSender: APIGatewayProxyHandler = async event => {
     const bodyObj = body ? JSON.parse(body) : {};
 
     const params = {
-      Destination: { ToAddresses: ["marizamj@gmail.com"] },
+      Destination: { ToAddresses: [process.env.SES_DESTINATION_ADDRESS!] },
       Message: {
         Body: { Html: { Charset: "UTF-8", Data: getEmailBodyHtml(bodyObj) } },
         Subject: {

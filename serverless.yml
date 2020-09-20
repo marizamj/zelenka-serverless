@@ -10,7 +10,9 @@ provider:
 
   profile: serverless
   region: eu-central-1
-  stage: dev
+
+  environment:
+    SES_DESTINATION_ADDRESS: ${param:SES_DESTINATION_ADDRESS}
 
   iamRoleStatements:
     - Effect: "Allow"
