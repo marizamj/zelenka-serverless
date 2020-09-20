@@ -23,7 +23,7 @@ export const emailSender: APIGatewayProxyHandler = async event => {
           Data: "Новое обращение с сайта, дата: " + new Date().toString()
         }
       },
-      Source: "marizamj@gmail.com"
+      Source: '"Zelenka.online" <noreply@zelenka.online>'
     };
 
     await ses
